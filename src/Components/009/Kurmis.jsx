@@ -1,9 +1,9 @@
-function Kurmis(){
-    const xzz=33;
+function Kurmis(props){
+  
     return(
         <>
         <h3>Kurmis</h3>
-        <span>Urvinis padaras nr. {xzz>20 ? 'Daug':'Nedaug'} </span>
+        <span style={{color:props.spalva<20 ? 'red':'purple'}}>Urvinis padaras nr.  </span>
         </>
     )
 }

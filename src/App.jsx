@@ -1,29 +1,75 @@
+import { useState } from 'react';
 import './App.css';
-import Hello from './Components/009/Hello';
-import Kurmis from './Components/009/Kurmis';
-import ZirB from './Components/009/ZirB';
-import Betkas from './Components/009/betkas';
-import Kumpis from './Components/009/5';
-import SpalvuKeitimas from './Components/009/spalvotas';
-import Sakinys from './Components/009/apps';
+import randColor from './Functions/randColor';
 
+// const katinukai = ['Pilkis', 'Murkis', 'Rainis'];
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-       <Hello spalva="pink" bg="yellow"></Hello>
-       <Kurmis spalva="23" ></Kurmis>
-       <ZirB></ZirB>
-       <Betkas></Betkas>
-       <Kumpis spalva="pink" bg="yellow" size="7px"></Kumpis>
 
-       <SpalvuKeitimas spalva1="pink"spalva2="black"></SpalvuKeitimas>
+    const [spalva, setSpalva] = useState('yellow');
+    const [skaicius, setSkaicius] = useState(1);
+    const [kv, setKv] = useState([]);
 
-       <Sakinys tekstas1={'tekstas pirmas '} tekstas2={'tekstas antras'} spalva="purple" ></Sakinys>
-      </header>
-    </div>
-  );
+    // const mygtukas = () => {
+    //     console.log('Aš gražus mygtukas');
+    //     return mygtukoBrolis;
+    // }
+
+    // const mygtukoBrolis = () => {
+    //     console.log('Aš gražus mygtuko brolis');
+    // }
+
+    const beArgumentu = () => {
+        console.log('beArgumentu');
+    }
+
+    const suArgumentu = ka => {
+        console.log('suArgumentu: ' + ka);
+    }
+
+    const keistiSpalva = () => {
+
+        // const nauja = spalva === 'yellow' ? 'pink' : 'yellow'; BLOGAI!!!!!
+
+
+        setSpalva(senojiSpalva => senojiSpalva === 'yellow' ? 'pink' : 'yellow');
+
+        // console.log(spalva);
+
+    }
+
+    const addKv = () => {
+        setKv(k => [...k, randColor()]);
+    }
+
+    const remKv = () => {
+        remKv(k=> [...k,randColor()]);
+    }
+
+
+    const skaiciuotuvas = ka => setSkaicius(s => s + ka);
+    return (
+        <div className="App">
+            <header className="App-header">
+                <h1 style={{color: spalva}}>State {skaicius}</h1>
+                
+                <div className="kvc">
+                {
+                    kv.map((c, i) => <div className="kv" key={i} style={{backgroundColor:c}}></div>)
+                }
+                </div>
+
+
+
+                <button onClick={beArgumentu}>BE</button>
+                <button onClick={() => suArgumentu('labas')}>SU</button>
+                <button onClick={keistiSpalva}>Kita spalva</button>
+                <button onClick={() => skaiciuotuvas(1)}>+1</button>
+                <button onClick={() => skaiciuotuvas(-1)}>-1</button>
+                <button onClick={addKv}>ADD []</button>
+            </header>
+        </div>
+    );
 }
 
 export default App;

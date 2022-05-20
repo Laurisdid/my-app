@@ -43,3 +43,18 @@
 .background-blue {
   background-color: blue;
 }
+
+.kv{
+  height:  25px;
+  width: 25px;
+  display: flex;
+  align-items: center;
+  background-color: crimson;
+  margin: 7px;
+  justify-content: center;
+}
+.kvc{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}

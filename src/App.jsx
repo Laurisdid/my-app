@@ -1,19 +1,20 @@
-import Daiktas from "./Daiktas";
+import './App.scss';
+import { useState } from 'react';
 
-function Tvenkinys({seaPlaners}) {
 
+  
+
+function App() {
+    const [count, setCount] = useState(1);
     return (
-        <>
-        {
-            seaPlaners.map(p => p.id % 2 ? <Daiktas key={p.id} seaPlaner={p}></Daiktas> : null)
-        }
-        <br />
-        {
-            seaPlaners.map(p => p.id % 2 ? null : <Daiktas key={p.id} seaPlaner={p}></Daiktas>)
-        }
-        </>
-    )
+        <div className="App">
+          <header className="App-header">
+           <h1>{count}</h1>
+           <button>+1</button>
+          </header>
+        </div>
+      );
 
 }
 
-export default Tvenkinys;
+export default App;

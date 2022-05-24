@@ -1,5 +1,5 @@
-import { useState } from 'react';
-import './App.css';
+import { useEffect, useRef, useState } from 'react';
+import './App.scss';
 import randColor from './Functions/randColor';
 
 // const katinukai = ['Pilkis', 'Murkis', 'Rainis'];
@@ -9,6 +9,15 @@ function App() {
     const [spalva, setSpalva] = useState('yellow');
     const [skaicius, setSkaicius] = useState(1);
     const [kv, setKv] = useState([]);
+    useEffect(() => {
+        setKv(parseInt(localStorage.getItem('kv') ?? 0));
+    }, []);
+    useEffect(() => {
+        if (null === kv) {
+            return;
+        }
+        localStorage.setItem('kv', kv);
+    }, [kv]);
 
     // const mygtukas = () => {
     //     console.log('Aš gražus mygtukas');
@@ -53,9 +62,9 @@ function App() {
             <header className="App-header">
                 <h1 style={{color: spalva}}>State {skaicius}</h1>
                 
-                <div className="kvc">
+                <div className="kv">
                 {
-                    kv.map((c, i) => <div className="kv" key={i} style={{backgroundColor:c}}></div>)
+                   kv?? kv.map((c, i) => <div className="kv" key={i} style={{backgroundColor:c}}></div>)
                 }
                 </div>
 
@@ -67,6 +76,8 @@ function App() {
                 <button onClick={() => skaiciuotuvas(1)}>+1</button>
                 <button onClick={() => skaiciuotuvas(-1)}>-1</button>
                 <button onClick={addKv}>ADD []</button>
+                <button onClick={remKv}>rem []</button>
+                
             </header>
         </div>
     );
